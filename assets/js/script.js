@@ -16,14 +16,7 @@ var timer;
 var chosenQuestion = ""
 var questionAmount = 5;
 var index;
-// var questions = [
-    
-//     questionOne,
-//     questionOne,
-//     questionOne,
-//     questionOne,
-//     questionOne
-// ]
+// var questions = []
 
 
 
@@ -478,6 +471,7 @@ function questionFive(){
     next.innerHTML = "Next"
     questionOneSection.appendChild(next)
     next.addEventListener("click", function(){
+        
         questionOneSection.style.display = 'none'
         finishScore()
         
@@ -497,8 +491,10 @@ function questionFive(){
     answerFour.addEventListener("click", incorrect)
 }
 function finishScore(){
+ window.clearInterval(timer)
+ 
  var infoPage = document.createElement("form")
- var yourScore =document.createTextNode("your score is " + score)
+ var yourScore = document.createTextNode("your score is " + score)
  infoPage.appendChild(yourScore)
  var userName = document.createElement("input")
  infoPage.appendChild(userName)
@@ -509,16 +505,23 @@ function finishScore(){
  submitEl.innerHTML = "Submit Score"
  infoPage.appendChild(submitEl)
 
+
 function submitResults(event){
     event.preventDefault()
+    infoPage.style.display = "none"
+
+    var highScoreList = []
 
     var highScores = {
         user: userName.value,
         userScore: score
     }
 
-    localStorage.setItem("highScore", JSON.stringify(highScores))
+    highScoreList.push(highScores)
+    highScoreList = highScoreList.concat(JSON.parse(localStorage.getItem("highScoreList") || "[]"))
 
+    localStorage.setItem("highScoreList", JSON.stringify(highScoreList))
+   
     highScoreScreen()
 
 }
@@ -528,7 +531,44 @@ function submitResults(event){
  submitEl.addEventListener("click", submitResults);
 }
 
+function highScoreScreen(){
+    var highScoreScreen = document.createElement("div")
+    var highscoreTitle = document.createElement("h2")
+    var node = document.createTextNode("High Scores")
+    highscoreTitle.appendChild(node)
+    highScoreScreen.appendChild(highscoreTitle)
 
+    var userHighScores = JSON.parse(localStorage.getItem("highScoreList"))
+
+    var userList = document.createElement("h4")
+    for (var i = 0; i < userHighScores.length; i++){
+    var node = document.createTextNode("  " + userHighScores[i].user + "  " + userHighScores[i].userScore + "  ")
+    userList.appendChild(node)
+    highScoreScreen.appendChild(userList)
+    }
+   
+    
+
+    var backButton = document.createElement("button")
+    backButton.innerHTML = "Back"
+    highScoreScreen.appendChild(backButton)
+    backButton.addEventListener("click", function(){
+        location.reload()
+    })
+
+    var clearHighScores = document.createElement("button")
+    clearHighScores.innerHTML = "Clear Scores"
+    highScoreScreen.appendChild(clearHighScores)
+    clearHighScores.addEventListener("click", function(){
+        localStorage.clear();
+    })
+
+
+
+
+
+quizOpen.appendChild(highScoreScreen)
+}
 
 
 
