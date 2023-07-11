@@ -459,7 +459,7 @@ function questionFive(){
     questionOneSection.appendChild(next)
     next.addEventListener("click", function(){
         questionOneSection.style.display = 'none'
-        console.log("fin")
+        finishScore()
         
     })
     }
@@ -479,7 +479,7 @@ function questionFive(){
     questionOneSection.appendChild(next)
     next.addEventListener("click", function(){
         questionOneSection.style.display = 'none'
-        console.log("fin")
+        finishScore()
         
     })
     } 
@@ -496,6 +496,37 @@ function questionFive(){
     answerThree.addEventListener("click", incorrect)
     answerFour.addEventListener("click", incorrect)
 }
+function finishScore(){
+ var infoPage = document.createElement("form")
+ var yourScore =document.createTextNode("your score is " + score)
+ infoPage.appendChild(yourScore)
+ var userName = document.createElement("input")
+ infoPage.appendChild(userName)
+ userName.setAttribute("type", "text");
+ userName.setAttribute("name", "userName");
+ userName.setAttribute("placeholder", "Full Name");
+ var submitEl = document.createElement("button")
+ submitEl.innerHTML = "Submit Score"
+ infoPage.appendChild(submitEl)
+
+function submitResults(event){
+    event.preventDefault()
+
+    var highScores = {
+        user: userName.value,
+        userScore: score
+    }
+
+    localStorage.setItem("highScore", JSON.stringify(highScores))
+
+    highScoreScreen()
+
+}
+
+
+ quizOpen.appendChild(infoPage)
+ submitEl.addEventListener("click", submitResults);
+}
 
 
 
@@ -503,7 +534,6 @@ function questionFive(){
 
 function scoreIncorrect(){
 score--
-localStorage.setItem("score", score)
 }
 
 function displayNone(){
