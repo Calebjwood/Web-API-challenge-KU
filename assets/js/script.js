@@ -4,6 +4,7 @@ var quizOpen = document.querySelector(".quizOpen")
 var quizExtra = document.querySelector(".quizExtra")
 var quizTitle = document.querySelector(".quizTitle")
 var quizExplain = document.querySelector(".quizExplain")
+var highScoreButton = document.querySelector(".veiwHighScores")
 
 
 
@@ -74,8 +75,12 @@ function questionOne(){
 displayShow()
 quizExtra.style.display = "none";
 var questionOneSection = document.createElement("div")
+questionOneSection.classList.add("bg-primary-subtle")
+questionOneSection.classList.add("fs-3")
+questionOneSection.classList.add("row")
+// questionOneSection.classList.add("")
 var para = document.createElement("p");
-var node = document.createTextNode("This is the first question");
+var node = document.createTextNode("Inside which HTML element do we put the JavaScript?");
 para.appendChild(node);
 
 
@@ -84,22 +89,22 @@ var answers = document.createElement("ul")
 
 
 var answerOne = document.createElement("li")
-node = document.createTextNode("answer one")
+node = document.createTextNode("<script>")
 answerOne.appendChild(node)
 answers.appendChild(answerOne)
 
 var answerTwo = document.createElement("li")
-node = document.createTextNode('answer two')
+node = document.createTextNode('<js>')
 answerTwo.appendChild(node)
 answers.appendChild(answerTwo)
 
 var answerThree = document.createElement("li")
-node = document.createTextNode('answer three')
+node = document.createTextNode('<scripting>')
 answerThree.appendChild(node)
 answers.appendChild(answerThree)
 
 var answerFour = document.createElement("li")
-node = document.createTextNode('answer four')
+node = document.createTextNode('<javascript>')
 answerFour.appendChild(node)
 answers.appendChild(answerFour)
 
@@ -158,8 +163,11 @@ function questionTwo(){
     displayShow()
     quizExtra.style.display = "none";
     var questionOneSection = document.createElement("div")
+    questionOneSection.classList.add("bg-primary-subtle")
+    questionOneSection.classList.add("fs-3")
+    questionOneSection.classList.add("row")
     var para = document.createElement("p");
-    var node = document.createTextNode("This is the second question");
+    var node = document.createTextNode("How do you write 'Hello World' in an alert box?");
     para.appendChild(node);
     
     
@@ -168,29 +176,29 @@ function questionTwo(){
     
     
     var answerOne = document.createElement("li")
-    node = document.createTextNode("answer one")
+    node = document.createTextNode('alertBox("Hello World");')
     answerOne.appendChild(node)
     answers.appendChild(answerOne)
     
     var answerTwo = document.createElement("li")
-    node = document.createTextNode('answer two')
+    node = document.createTextNode('msg("Hello World");')
     answerTwo.appendChild(node)
     answers.appendChild(answerTwo)
     
     var answerThree = document.createElement("li")
-    node = document.createTextNode('answer three')
+    node = document.createTextNode("alert('Hello World');")
     answerThree.appendChild(node)
     answers.appendChild(answerThree)
     
     var answerFour = document.createElement("li")
-    node = document.createTextNode('answer four')
+    node = document.createTextNode('msgBox("Hello World");')
     answerFour.appendChild(node)
     answers.appendChild(answerFour)
     
     function correct(){
-    answerOne.removeEventListener("click", correct)
+    answerOne.removeEventListener("click", incorrect)
     answerTwo.removeEventListener("click", incorrect)
-    answerThree.removeEventListener("click", incorrect)
+    answerThree.removeEventListener("click", correct)
     answerFour.removeEventListener("click", incorrect)
     var result = document.createElement("h4")
     var node = document.createTextNode("Correct")
@@ -207,9 +215,9 @@ function questionTwo(){
     }
     
     function incorrect(){
-    answerOne.removeEventListener("click", correct)
+    answerOne.removeEventListener("click", incorrect)
     answerTwo.removeEventListener("click", incorrect)
-    answerThree.removeEventListener("click", incorrect)
+    answerThree.removeEventListener("click", correct)
     answerFour.removeEventListener("click", incorrect)
     var result = document.createElement("h4")
     var node = document.createTextNode("incorrect")
@@ -232,9 +240,9 @@ function questionTwo(){
     questionOneSection.appendChild(answers)
     quizOpen.appendChild(questionOneSection)
     
-    answerOne.addEventListener("click", correct)
+    answerOne.addEventListener("click", incorrect)
     answerTwo.addEventListener("click", incorrect)
-    answerThree.addEventListener("click", incorrect)
+    answerThree.addEventListener("click", correct)
     answerFour.addEventListener("click", incorrect)
 }
 
@@ -242,8 +250,11 @@ function questionThree(){
         displayShow()
         quizExtra.style.display = "none";
         var questionOneSection = document.createElement("div")
+        questionOneSection.classList.add("bg-primary-subtle")
+        questionOneSection.classList.add("fs-3")
+        questionOneSection.classList.add("row")
         var para = document.createElement("p");
-        var node = document.createTextNode("This is the third question");
+        var node = document.createTextNode("How do you create a function in JavaScript?");
         para.appendChild(node);
         
         
@@ -252,29 +263,29 @@ function questionThree(){
         
         
         var answerOne = document.createElement("li")
-        node = document.createTextNode("answer one")
+        node = document.createTextNode("function(myFunction)")
         answerOne.appendChild(node)
         answers.appendChild(answerOne)
         
         var answerTwo = document.createElement("li")
-        node = document.createTextNode('answer two')
+        node = document.createTextNode('function = myFunction()')
         answerTwo.appendChild(node)
         answers.appendChild(answerTwo)
         
         var answerThree = document.createElement("li")
-        node = document.createTextNode('answer three')
+        node = document.createTextNode('function:myFunction()')
         answerThree.appendChild(node)
         answers.appendChild(answerThree)
         
         var answerFour = document.createElement("li")
-        node = document.createTextNode('answer four')
+        node = document.createTextNode('function myFunction()')
         answerFour.appendChild(node)
         answers.appendChild(answerFour)
         
         function correct(){
-        answerOne.removeEventListener("click", correct)
+        answerOne.removeEventListener("click", incorrect)
         answerTwo.removeEventListener("click", incorrect)
-        answerThree.removeEventListener("click", incorrect)
+        answerThree.removeEventListener("click", correct)
         answerFour.removeEventListener("click", incorrect)
         var result = document.createElement("h4")
         var node = document.createTextNode("Correct")
@@ -291,9 +302,9 @@ function questionThree(){
         }
         
         function incorrect(){
-        answerOne.removeEventListener("click", correct)
+        answerOne.removeEventListener("click", incorrect)
         answerTwo.removeEventListener("click", incorrect)
-        answerThree.removeEventListener("click", incorrect)
+        answerThree.removeEventListener("click", correct)
         answerFour.removeEventListener("click", incorrect)
         var result = document.createElement("h4")
         var node = document.createTextNode("incorrect")
@@ -316,17 +327,20 @@ function questionThree(){
         questionOneSection.appendChild(answers)
         quizOpen.appendChild(questionOneSection)
         
-        answerOne.addEventListener("click", correct)
+        answerOne.addEventListener("click", incorrect)
         answerTwo.addEventListener("click", incorrect)
         answerThree.addEventListener("click", incorrect)
-        answerFour.addEventListener("click", incorrect)
+        answerFour.addEventListener("click", correct)
 }
 function questionFour(){
     displayShow()
     quizExtra.style.display = "none";
     var questionOneSection = document.createElement("div")
+    questionOneSection.classList.add("bg-primary-subtle")
+    questionOneSection.classList.add("fs-3")
+    questionOneSection.classList.add("row")
     var para = document.createElement("p");
-    var node = document.createTextNode("This is the fourth question");
+    var node = document.createTextNode('How do you call a function named "myFunction"?');
     para.appendChild(node);
     
     
@@ -335,22 +349,22 @@ function questionFour(){
     
     
     var answerOne = document.createElement("li")
-    node = document.createTextNode("answer one")
+    node = document.createTextNode("myFunction()")
     answerOne.appendChild(node)
     answers.appendChild(answerOne)
     
     var answerTwo = document.createElement("li")
-    node = document.createTextNode('answer two')
+    node = document.createTextNode('call function myFunction()')
     answerTwo.appendChild(node)
     answers.appendChild(answerTwo)
     
     var answerThree = document.createElement("li")
-    node = document.createTextNode('answer three')
+    node = document.createTextNode('call myFunction()')
     answerThree.appendChild(node)
     answers.appendChild(answerThree)
     
     var answerFour = document.createElement("li")
-    node = document.createTextNode('answer four')
+    node = document.createTextNode('myFunction = call')
     answerFour.appendChild(node)
     answers.appendChild(answerFour)
     
@@ -408,8 +422,11 @@ function questionFive(){
     displayShow()
     quizExtra.style.display = "none";
     var questionOneSection = document.createElement("div")
+    questionOneSection.classList.add("bg-primary-subtle")
+    questionOneSection.classList.add("fs-3")
+    questionOneSection.classList.add("row")
     var para = document.createElement("p");
-    var node = document.createTextNode("This is the fifth question");
+    var node = document.createTextNode("How can you add a comment in a JavaScript?");
     para.appendChild(node);
     
     
@@ -418,28 +435,28 @@ function questionFive(){
     
     
     var answerOne = document.createElement("li")
-    node = document.createTextNode("answer one")
+    node = document.createTextNode("<!--This is a comment-->")
     answerOne.appendChild(node)
     answers.appendChild(answerOne)
     
     var answerTwo = document.createElement("li")
-    node = document.createTextNode('answer two')
+    node = document.createTextNode('//This is a comment')
     answerTwo.appendChild(node)
     answers.appendChild(answerTwo)
     
     var answerThree = document.createElement("li")
-    node = document.createTextNode('answer three')
+    node = document.createTextNode("'This is a comment")
     answerThree.appendChild(node)
     answers.appendChild(answerThree)
     
     var answerFour = document.createElement("li")
-    node = document.createTextNode('answer four')
+    node = document.createTextNode('This is a comment')
     answerFour.appendChild(node)
     answers.appendChild(answerFour)
     
     function correct(){
-    answerOne.removeEventListener("click", correct)
-    answerTwo.removeEventListener("click", incorrect)
+    answerOne.removeEventListener("click", incorrect)
+    answerTwo.removeEventListener("click", correct)
     answerThree.removeEventListener("click", incorrect)
     answerFour.removeEventListener("click", incorrect)
     var result = document.createElement("h4")
@@ -458,8 +475,8 @@ function questionFive(){
     }
     
     function incorrect(){
-    answerOne.removeEventListener("click", correct)
-    answerTwo.removeEventListener("click", incorrect)
+    answerOne.removeEventListener("click", incorrect)
+    answerTwo.removeEventListener("click", correct)
     answerThree.removeEventListener("click", incorrect)
     answerFour.removeEventListener("click", incorrect)
     var result = document.createElement("h4")
@@ -485,8 +502,8 @@ function questionFive(){
     questionOneSection.appendChild(answers)
     quizOpen.appendChild(questionOneSection)
     
-    answerOne.addEventListener("click", correct)
-    answerTwo.addEventListener("click", incorrect)
+    answerOne.addEventListener("click", incorrect)
+    answerTwo.addEventListener("click", correct)
     answerThree.addEventListener("click", incorrect)
     answerFour.addEventListener("click", incorrect)
 }
@@ -494,6 +511,7 @@ function finishScore(){
  window.clearInterval(timer)
  
  var infoPage = document.createElement("form")
+ infoPage.classList.add("fs-4")
  var yourScore = document.createTextNode("your score is " + score)
  infoPage.appendChild(yourScore)
  var userName = document.createElement("input")
@@ -533,6 +551,7 @@ function submitResults(event){
 
 function highScoreScreen(){
     var highScoreScreen = document.createElement("div")
+    // highScoreScreen.classList.add("")
     var highscoreTitle = document.createElement("h2")
     var node = document.createTextNode("High Scores")
     highscoreTitle.appendChild(node)
@@ -574,6 +593,7 @@ quizOpen.appendChild(highScoreScreen)
 
 function scoreIncorrect(){
 score--
+timeCounter = timeCounter - 10
 }
 
 function displayNone(){
@@ -584,6 +604,10 @@ function displayShow(){
     quizOpen.style.display = "show";
 }
 
+function veiwScoreScreen(){
+    quizExtra.style.display = "none";
+    highScoreScreen() 
+}
 
 
 
@@ -597,6 +621,7 @@ function displayShow(){
 
 
 
+highScoreButton.addEventListener("click", veiwScoreScreen)
 
 startButton.addEventListener("click", startGame);
 
